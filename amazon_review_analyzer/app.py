@@ -7,12 +7,11 @@ from passlib.hash import sha256_crypt
 from functools import wraps
 import MySQLdb
 import os
-#import app_name_finder,image_link_finder,page_link_finder,rating_finder,merge_links
+import app_name_finder,image_link_finder,page_link_finder,rating_finder,merge_links
 
 
 app = Flask(__name__)
 
-#from here
 mysql = MySQL(app)
 
 app.secret_key = os.urandom(30)
@@ -22,18 +21,16 @@ conn = MySQLdb.connect(host="localhost",user="root",password="rht20",db="bestAPP
 #init MYSQL
 mysql.init_app(app)
 
-#to here
-
 
 ######################################### home #########################################
 
 @app.route('/')
 def home1():
-#    app_name_finder
-#    image_link_finder
-#    page_link_finder
-#    rating_finder
-#    merge_links
+    app_name_finder
+    image_link_finder
+    page_link_finder
+    rating_finder
+    merge_links
 
     i = 0
     j = 0
@@ -84,7 +81,7 @@ def SearchPage():
 
     keyword= request.form['SearchWord']
     # keyword="Subway"
-    arg="arg1="+keyword
+    arg = "arg1="+keyword
     subprocess.call(["php", "/home/musfiq/PycharmProjects/amazon_review_analyzer/ItemSearch2.php", arg])
 
     #time.sleep(3)
@@ -111,22 +108,22 @@ def SearchPage():
                 list.append([])
                 print(list)
 
+    list.pop()
     return render_template("SearchPage.html", list=list)
 
 
 def merge():
-    # Read a file
-    name1 = '/home/musfiq/PycharmProjects/amazon_review_analyzer/templates/search_text/FTitle.txt'
-    name2 = '/home/musfiq/PycharmProjects/amazon_review_analyzer/templates/search_text/FImage.txt'
-    name3 = '/home/musfiq/PycharmProjects/amazon_review_analyzer/templates/search_text/FASIN.txt'
-    name4 = '/home/musfiq/PycharmProjects/amazon_review_analyzer/templates/search_text/FRating.txt'
-    name5 = '/home/musfiq/PycharmProjects/amazon_review_analyzer/templates/search_text/merged_attribute.txt'
+
+    name1 = 'templates/search_text/FTitle.txt'
+    name2 = 'templates/search_text/FImage.txt'
+    name3 = 'templates/search_text/FASIN.txt'
+    name4 = 'templates/search_text/FRating.txt'
+    name5 = 'templates/search_text/merged_attribute.txt'
 
     list1 = []
     list2 = []
     list3 = []
     list4 = []
-    list5 = []
 
     with open(name1, 'r') as f1:
         for line in f1:
@@ -159,8 +156,6 @@ def merge():
         f5.write("")
 
     for i in range(0, list1.__len__()):
-        # if list1[i].__len__() > 19:
-        #   continue
 
         with open(name5, 'a') as f5:
             f5.write(list1[i])
@@ -169,8 +164,6 @@ def merge():
 
             for j in list4[i]:
                 f5.write(j)
-
-
 
 
 ######################################### registration #########################################
