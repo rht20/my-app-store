@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+	<title>Registration Form Error</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="static/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="static/css/main.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" a href="css3\style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" a href="css3\font-awesome.min.css">
+<!--===============================================================================================-->
+
+    <script type="text/javascript">
+        function check()
+        {
+            pname = document.getElementById('InputNameId').value;
+            pemail = document.getElementById('InputEmailId').value;
+            ppword = document.getElementById('InputPasswordId').value;
+
+            lname = document.getElementById('IName');
+            lemail = document.getElementById('IEmail');
+            lpword = document.getElementById('IPassword');
+
+            flag = false;
+
+            if(pname == "")
+            {
+                lname.innerHTML = "Please enter your name".fontcolor("RED").fontsize(2.5);
+                flag = true;
+            }
+            else lname.innerHTML = "Name".fontcolor("Black");
+
+            if(pemail == "")
+            {
+                lemail.innerHTML = "Please enter an email address".fontcolor("RED").fontsize(2.5);
+                flag = true;
+            }
+            else lemail.innerHTML = "Email".fontcolor("Black");
+
+            if(ppword == "")
+            {
+                lpword.innerHTML = "Please enter a password".fontcolor("RED").fontsize(2.5);
+                flag = true;
+            }
+            else if(ppword.length < 5)
+            {
+                lpword.innerHTML = "Passwords must contain at least 5 characters".fontcolor("RED").fontsize(2.5);
+                flag = true;
+            }
+            else lpword.innerHTML = "Password".fontcolor("Black");
+
+            if(flag) return  false;
+            return  true;
+        }
+    </script>
+
+</head>
+<body style="background-color: #999999;">
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="login100-more" style="background-image: url('/static/images/bg1.jpg');"></div>
+
+            <!-- form start -->
+
+			<div class="wrap-login100 p-l-70 p-r-70 p-t-80 p-b-70">
+				<br class="login100-form validate-form">
+					<span class="login100-form-title p-b-40">
+						Sign Up
+					</span>
+
+                <form action="/registration_form_response" onsubmit="return check()" method="post">
+
+                    <div>
+                        <p style="color: red">*Email address already in use</p>
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <lebel for="fInputName" id="IName">Name</lebel>
+                        <input type="text" class="form-control" id="InputNameId" name="InputName" placeholder="Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fInputEmail" id="IEmail">Email</label>
+                        <input type="email" class="form-control" id="InputEmailId" name="InputEmail" placeholder="Email Address">
+                    </div>
+
+                    <div class="form-group">
+                        <lebel for="fInputPassword" id="IPassword">Password</lebel>
+                        <input type="password" class="form-control" id="InputPasswordId" name="InputPassword" placeholder="Password">
+                    </div>
+
+                    <br>
+
+                    <div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" type="submit">
+								Sign Up
+							</button>
+						</div>
+					</div>
+
+                </form>
+
+                <form action="/login_form" onsubmit="true" method="post">
+                    <div class="container-login100-form-btn">
+						<a href="/login_form" class="dis-block txt3 hov1 p-t-10 p-l-215">
+							Sign In
+							<i class="fa fa-long-arrow-right m-l-5"></i>
+						</a>
+					</div>
+
+                </form>
+
+            </div>
+            <!-- form end -->
+
+        </div>
+    </div>
+
+<!--===============================================================================================-->
+    <script src="static/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/vendor/bootstrap/js/popper.js"></script>
+	<script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/vendor/daterangepicker/moment.min.js"></script>
+	<script src="static/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="static/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="static/js/main.js"></script>
+
+</body>
+</html>
