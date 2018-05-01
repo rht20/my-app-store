@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, json, flash, redirect, url_for, session, logging
 from flask_mysqldb import MySQL
 from flask import session
+import os,subprocess,time
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
@@ -10,14 +11,18 @@ import app_name_finder,image_link_finder,page_link_finder,rating_finder,merge_li
 
 
 app = Flask(__name__)
+
+#from here
 mysql = MySQL(app)
 
 app.secret_key = os.urandom(30)
 
 conn = MySQLdb.connect(host="localhost",user="root",password="rht20",db="bestAPP")
 
-# init MYSQL
+#init MYSQL
 mysql.init_app(app)
+
+#to here
 
 
 ######################################### home #########################################
@@ -76,6 +81,101 @@ def home2():
                 list.append([])
 
     return render_template("home2.html", list=list)
+
+
+
+@app.route('/SearchPage' , methods=['POST'])  # shows search result @app.route('/' , methods=['POST'])
+def SearchPage():
+
+    keyword= request.form['SearchWord']
+    # keyword="Subway"
+    arg="arg1="+keyword
+    subprocess.call(["php", "/home/musfiq/PycharmProjects/amazon_review_analyzer/ItemSearch2.php", arg])
+
+    #time.sleep(3)
+    merge()
+
+    i = 0
+    j = 0
+
+    print("opening merging file")
+    file_path = 'templates/search_text/merged_attribute.txt'
+    list = []
+    list.append([])
+
+    with open(file_path, 'r') as f:
+        for line in f:
+            list[j].append(line)
+            i += 1
+
+            if i == 8:
+                if list.__len__() == 18:
+                    break
+                i = 0
+                j += 1
+                list.append([])
+                print(list)
+
+    return render_template("SearchPage.html", list=list)
+
+
+def merge():
+    # Read a file
+    name1 = '/home/musfiq/PycharmProjects/amazon_review_analyzer/templates/search_text/FTitle.txt'
+    name2 = '/home/musfiq/PycharmProjects/amazon_review_analyzer/templates/search_text/FImage.txt'
+    name3 = '/home/musfiq/PycharmProjects/amazon_review_analyzer/templates/search_text/FASIN.txt'
+    name4 = '/home/musfiq/PycharmProjects/amazon_review_analyzer/templates/search_text/FRating.txt'
+    name5 = '/home/musfiq/PycharmProjects/amazon_review_analyzer/templates/search_text/merged_attribute.txt'
+
+    list1 = []
+    list2 = []
+    list3 = []
+    list4 = []
+    list5 = []
+
+    with open(name1, 'r') as f1:
+        for line in f1:
+            list1.append(line)
+            print(line)
+
+    with open(name2, 'r') as f2:
+        for line in f2:
+            list2.append(line)
+            print(line)
+
+    with open(name3, 'r') as f3:
+        for line in f3:
+            list3.append(line)
+            print(line)
+
+    i = 5
+    j = -1
+    with open(name4, 'r') as f4:
+        for line in f4:
+            if i == 5:
+                i = 0
+                j += 1
+                list4.append([])
+
+            list4[j].append(line)
+            i += 1
+
+    with open(name5, 'w') as f5:
+        f5.write("")
+
+    for i in range(0, list1.__len__()):
+        # if list1[i].__len__() > 19:
+        #   continue
+
+        with open(name5, 'a') as f5:
+            f5.write(list1[i])
+            f5.write(list2[i])
+            f5.write(list3[i])
+
+            for j in list4[i]:
+                f5.write(j)
+
+
 
 
 ######################################### registration #########################################
