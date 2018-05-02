@@ -13,48 +13,48 @@ import app_name_finder,image_link_finder,page_link_finder,rating_finder,merge_li
 app = Flask(__name__)
 
 
-mysql = MySQL(app)
-
-app.secret_key = os.urandom(30)
-
-conn = MySQLdb.connect(host="localhost",user="root",password="rht20",db="bestAPP")
-
-#init MYSQL
-mysql.init_app(app)
+# mysql = MySQL(app)
+#
+# app.secret_key = os.urandom(30)
+#
+# conn = MySQLdb.connect(host="localhost",user="root",password="rht20",db="bestAPP")
+#
+# #init MYSQL
+# mysql.init_app(app)
 
 
 
 ######################################### home #########################################
 
 
+# @app.route('/')
+# def home1():
+#      app_name_finder
+#      image_link_finder
+#      page_link_finder
+#      rating_finder
+#      merge_links
+#
+#      i = 0
+#      j = 0
+#      file_path = 'templates/text_files/merged_file.txt'
+#      list = []
+#      list.append([])
+#      with open(file_path, 'r') as f:
+#          for line in f:
+#              list[j].append(line)
+#              i += 1
+#
+#              if i == 8:
+#                  if list.__len__() == 18:
+#                      break
+#                  i = 0
+#                  j += 1
+#                  list.append([])
+#
+#      return render_template("home1.html", list=list)
+
 @app.route('/')
-def home1():
-     app_name_finder
-     image_link_finder
-     page_link_finder
-     rating_finder
-     merge_links
-
-     i = 0
-     j = 0
-     file_path = 'templates/text_files/merged_file.txt'
-     list = []
-     list.append([])
-     with open(file_path, 'r') as f:
-         for line in f:
-             list[j].append(line)
-             i += 1
-
-             if i == 8:
-                 if list.__len__() == 18:
-                     break
-                 i = 0
-                 j += 1
-                 list.append([])
-
-     return render_template("home1.html", list=list)
-
-@app.route('/home2')
 def home2():
 
     i = 0
