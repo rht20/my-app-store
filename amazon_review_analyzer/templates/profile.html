@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My App Store</title>
+    <title>Profile</title>
 
     <!-- PLUGINS CSS STYLE -->
     <link href="static/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
@@ -66,6 +66,51 @@
     <link rel="stylesheet" a href="css3\font-awesome.min.css">
 <!--===============================================================================================-->
 
+    <script type="text/javascript">
+        function check()
+        {
+            pname = document.getElementById('InputNameId').value;
+            cpword = document.getElementById('InputCPasswordId').value;
+            ppword = document.getElementById('InputPasswordId').value;
+
+            lname = document.getElementById('IName');
+            liname = document.getElementById('InputNameId');
+            lcpword = document.getElementById('ICPassword');
+            lpword = document.getElementById('IPassword');
+
+            flag = false;
+
+            if(pname == "")
+            {
+                lname.innerHTML = "*Name field cannot be empty".fontcolor("RED").fontsize(2.5);
+                liname.value = "{{ list[0] }}";
+                flag = true;
+            }
+
+            if(cpword == "")
+            {
+                lcpword.innerHTML = "*Please enter your current password".fontcolor("RED").fontsize(2.5);
+                flag = true;
+            }
+            else if(cpword.length < 5)
+            {
+                lcpword.innerHTML = "*Passwords must contain at least 5 characters".fontcolor("RED").fontsize(2.5);
+                flag = true;
+            }
+            else lcpword.innerHTML = "Current Password".fontcolor("Black");
+
+            if(ppword.length > 0 && ppword.length < 5)
+            {
+                lpword.innerHTML = "*Passwords must contain at least 5 characters".fontcolor("RED").fontsize(2.5);
+                flag = true;
+            }
+            else lpword.innerHTML = "Password".fontcolor("Black");
+
+            if(flag) return  false;
+            return  true;
+        }
+    </script>
+
 </head>
 
 <body class="body-wrapper">
@@ -109,7 +154,7 @@
     </div>
 
     <div class="p-p-l-36">
-        <form action="/registration_form_data" onsubmit="return check()" method="post">
+        <form action="/edit_profile" onsubmit="return check()" method="post">
             <div class="form-group p-p-t-5">
                 <lebel for="fInputName" id="IName">Name</lebel>
                 <input type="text" class="form-control" id="InputNameId" name="InputName" value="{{ list[0] }}" style="width: 45%">
@@ -117,7 +162,12 @@
 
             <div class="form-group">
                 <label for="fInputEmail" id="IEmail">Email</label>
-                <input type="email" class="form-control" id="InputEmailId" name="InputEmail" value="{{ list[1] }}" style="width: 45%">
+                <input type="email" class="form-control" id="InputEmailId" name="InputEmail" value="{{ list[1] }}" style="width: 45%" disabled>
+            </div>
+
+            <div class="form-group">
+                <lebel for="fInputCPassword" id="ICPassword">Current Password</lebel>
+                <input type="password" class="form-control" id="InputCPasswordId" name="InputCPassword" placeholder="Current Password" style="width: 45%">
             </div>
 
             <div class="form-group">

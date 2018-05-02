@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login Form</title>
+    <title>Edit Profile</title>
 
     <!-- PLUGINS CSS STYLE -->
     <link href="static/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
@@ -66,6 +66,51 @@
     <link rel="stylesheet" a href="css3\font-awesome.min.css">
 <!--===============================================================================================-->
 
+    <script type="text/javascript">
+        function check()
+        {
+            pname = document.getElementById('InputNameId').value;
+            cpword = document.getElementById('InputCPasswordId').value;
+            ppword = document.getElementById('InputPasswordId').value;
+
+            lname = document.getElementById('IName');
+            liname = document.getElementById('InputNameId');
+            lcpword = document.getElementById('ICPassword');
+            lpword = document.getElementById('IPassword');
+
+            flag = false;
+
+            if(pname == "")
+            {
+                lname.innerHTML = "*Name field cannot be empty".fontcolor("RED").fontsize(2.5);
+                liname.value = "{{ list[0] }}";
+                flag = true;
+            }
+
+            if(cpword == "")
+            {
+                lcpword.innerHTML = "*Please enter your current password".fontcolor("RED").fontsize(2.5);
+                flag = true;
+            }
+            else if(cpword.length < 5)
+            {
+                lcpword.innerHTML = "*Passwords must contain at least 5 characters".fontcolor("RED").fontsize(2.5);
+                flag = true;
+            }
+            else lcpword.innerHTML = "Current Password".fontcolor("Black");
+
+            if(ppword.length > 0 && ppword.length < 5)
+            {
+                lpword.innerHTML = "*Passwords must contain at least 5 characters".fontcolor("RED").fontsize(2.5);
+                flag = true;
+            }
+            else lpword.innerHTML = "Password".fontcolor("Black");
+
+            if(flag) return  false;
+            return  true;
+        }
+    </script>
+
 </head>
 
 <body class="body-wrapper">
@@ -75,7 +120,7 @@
         <div class="row">
             <div class="col-md-12">
                 <nav class="navbar navbar-expand-lg  navigation">
-                    <a class="navbar-brand" href="/" style="font-size: 20px">
+                    <a class="navbar-brand" href="/home2" style="font-size: 20px">
                         My App Store
                         {#<img src="static/images/logo.png" alt="">#}
                     </a>
@@ -84,69 +129,68 @@
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto mt-10">
+                            <form action="/" class="nav-item" onsubmit="true">
+							    <button type="submit" class="nav-link login-button">
+                                    Sign Out
+							    </button>
+                            </form>
+                        </ul>
+                    </div>
                 </nav>
             </div>
         </div>
     </div>
 </section>
 
-<!--===============================
-=            Login                =
-================================-->
+<!--===================================
+=            Profile                  =
+====================================-->
 
 <section class="card bg-gray">
-    <div class="limiter">
-		<div class="container-login100">
-			<div class="login100-more" style="background-image: url('/static/images/bg1.jpg');"></div>
+    <div class="p-p-l-42 p-t-20">
+        <img src="static/images/profile.png" style="border-radius: 50%">
+    </div>
 
-            <!-- form start -->
-
-			<div class="wrap-login100 p-l-70 p-r-70 p-t-80 p-b-70">
-				<br class="login100-form validate-form">
-					<span class="login100-form-title p-b-40">
-						Sign In
-					</span>
-
-                <form action="/login_form_response" onsubmit="true" method="post">
-
-                    <div class="form-group">
-                        <label for="fInputEmail" id="IEmail">Email</label>
-                        <input type="email" class="form-control" id="InputEmailId" name="InputEmail" placeholder="Email Address">
-                    </div>
-
-                    <div class="form-group">
-                        <lebel for="InputPassword">Password</lebel>
-                        <input type="password" class="form-control" name="InputPassword" placeholder="Password">
-                    </div>
-
-                    <br>
-
-                    <div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
-								Sign In
-							</button>
-						</div>
-                    </div>
-
-                </form>
-
-                <form action="/registration_form">
-
-                        <div class="container-login100-form-btn">
-						    <a href="/registration_form" class="dis-block txt3 hov1 p-t-10 p-l-215">
-							    Sign Up
-							    <i class="fa fa-long-arrow-right m-l-5"></i>
-						    </a>
-					    </div>
-
-                </form>
-
+    <div class="p-p-l-36">
+        <div class="form-group">
+                <label for="fInputEmail" id="IEmail" style="color: red">*Please enter your correct current password</label>
             </div>
-            <!-- form end -->
 
-        </div>
+        <form action="/edit_profile" onsubmit="return check()" method="post">
+            <div class="form-group p-p-t-5">
+                <lebel for="fInputName" id="IName">Name</lebel>
+                <input type="text" class="form-control" id="InputNameId" name="InputName" value="{{ list[0] }}" style="width: 45%">
+            </div>
+
+            <div class="form-group">
+                <label for="fInputEmail" id="IEmail">Email</label>
+                <input type="email" class="form-control" id="InputEmailId" name="InputEmail" value="{{ list[1] }}" style="width: 45%" disabled>
+            </div>
+
+            <div class="form-group">
+                <lebel for="fInputCPassword" id="ICPassword">Current Password</lebel>
+                <input type="password" class="form-control" id="InputCPasswordId" name="InputCPassword" placeholder="Current Password" style="width: 45%">
+            </div>
+
+            <div class="form-group">
+                <lebel for="fInputPassword" id="IPassword">Password</lebel>
+                <input type="password" class="form-control" id="InputPasswordId" name="InputPassword" placeholder="Password" style="width: 45%">
+            </div>
+
+            <br>
+            <div class=" p-p-b-10 container-login100-form-btn">
+                <div class="wrap-login100-form-btn">
+                    <div class="login100-form-bgbtn"></div>
+                    <button class="login100-form-btn_edited" type="submit">
+                        Save
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
     </div>
 </section>
 
@@ -178,7 +222,7 @@
     <!-- Container End -->
     <!-- To Top -->
     <div class="top-to">
-        <a id="top" class="" href="/login_form"><i class="fa fa-angle-up"></i></a>
+        <a id="top" class="" href="/edit_profile"><i class="fa fa-angle-up"></i></a>
     </div>
 </footer>
 

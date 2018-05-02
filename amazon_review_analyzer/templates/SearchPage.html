@@ -91,10 +91,10 @@
                         <ul class="list-inline">
 
                             <li class="list-inline-item">
-                                <a href=""><i class="fa fa-android"></i> Apps</a>
+                                <a href="#"><i class="fa fa-android"></i> Apps</a>
                             </li>
                             <li class="list-inline-item">
-                                <a href=""><i class="fa fa-gamepad"></i> Games</a>
+                                <a href="#"><i class="fa fa-gamepad"></i> Games</a>
                             </li>
                         </ul>
                     </div>
@@ -145,11 +145,11 @@
 
 
         <div class="row">
-            {% for item in list %}
-                <div class="col-sm-10 col-lg-2">
+            {% for item in list  %}
+                <div class="col-sm-3">
                     <!-- product card -->
                     <div class="product-item bg-light">
-                        <div class="card" style="width: 10rem;">
+                        <div class="card" style="width: 12rem;">
                             <div class="thumb-content">
                                 <a href="3rd_page">
                                     <img alt="{{ item[0] }}" class="card-img-top img-fluid" src={{ item[1] }}>
@@ -163,7 +163,7 @@
                                            value="https://www.amazon.com/gp/product/B008TQ16OG/ref=s9_dcacsd_dcoop_bw_c_x_4_w?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=merchandised-search-4&pf_rd_r=70FQ4YFKYWW2M9NAMW3M&pf_rd_r=70FQ4YFKYWW2M9NAMW3M&pf_rd_t=101&pf_rd_p=b8a14fc1-ee63-4942-87af-21d9e3e103e1&pf_rd_p=b8a14fc1-ee63-4942-87af-21d9e3e103e1&pf_rd_i=2350149011"/>
                                     <input type="hidden" name="var2" value="678910"/>
 
-                                    <span style="width: 10rem; font-size: 12px">{{ item[0] }}</span>
+                                    <span style="width: 10rem; font-weight: bold; font-size: 13px">{{ item[0] }}</span>
                                 </form>
                                 <div class="product-ratings">
                                     <ul class="list-inline">
@@ -212,7 +212,7 @@
     <!-- Container End -->
     <!-- To Top -->
     <div class="top-to">
-        <a id="top" class="" href="/home2"><i class="fa fa-angle-up"></i></a>
+        <a id="top" class="" href="#"><i class="fa fa-angle-up"></i></a>
     </div>
 </footer>
 
