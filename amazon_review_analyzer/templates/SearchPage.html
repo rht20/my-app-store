@@ -33,7 +33,39 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript">
 
+        var cars = [
+            {"make": "Porsche", "model": "911S"},
+            {"make": "Mercedes-Benz", "model": "220SE"},
+            {"make": "Jaguar", "model": "Mark VII"}
+        ];
+
+        window.onload = function () {
+            // setup the button click
+
+
+            var x=document.getElementById("input1")
+            x.value=item[0]
+            window.alert(x);
+            document.getElementById("input1").onclick = function () {
+                window.alert("i am clicked");
+                doWork()
+            };
+        }
+
+        function doWork() {
+            // ajax the JSON to the server
+            $.post("ShowDetails", cars, function () {
+
+            });
+            // stop link reloading the page
+            event.preventDefault();
+        }
+
+
+    </script>
 
 </head>
 
@@ -56,14 +88,14 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto mt-10">
                             <form action="/profile" class="nav-item" onsubmit="true">
-							    <button type="submit" class="nav-link login-button">
+                                <button type="submit" class="nav-link login-button">
                                     Profile
-							    </button>
+                                </button>
                             </form>
                             <form action="/" class="nav-item" onsubmit="true">
-							    <button type="submit" class="nav-link login-button">
+                                <button type="submit" class="nav-link login-button">
                                     Sign Out
-							    </button>
+                                </button>
                             </form>
                         </ul>
                     </div>
@@ -108,7 +140,8 @@
 
                             <div class="col-lg-12 col-md-12">
                                 <div class="block d-flex">
-                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" name="SearchWord" placeholder="Search for app">
+                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search"
+                                           name="SearchWord" placeholder="Search for app">
                                     <!-- Search Button -->
                                     <button class="btn btn-main">SEARCH</button>
                                 </div>
@@ -145,15 +178,47 @@
 
 
         <div class="row">
-            {% for item in list  %}
+            {% for item in list %}
                 <div class="col-sm-3">
                     <!-- product card -->
                     <div class="product-item bg-light">
                         <div class="card" style="width: 12rem;">
                             <div class="thumb-content">
-                                <a href="3rd_page">
-                                    <img alt="{{ item[0] }}" class="card-img-top img-fluid" src={{ item[1] }}>
-                                </a>
+
+
+                                {#                                 <input type="image" src="https://i.cdn.turner.com/v5cache/CARTOON/site/Images/i182/ben17_180x180.png" name="url" value="SNOW"/>#}
+
+                                {#                                     <input id="image" type="image" alt="Login" name="url" value="SNOW"#}
+                                {#                                        src="https://i.cdn.turner.com/v5cache/CARTOON/site/Images/i182/ben17_180x180.png">#}
+                                {#                                   <img alt="{{ item[0] }}" class="card-img-top img-fluid" src="{{ item[1] }}" id="{{ item[8] }}">#}
+                                {#                                 <form action="/ShowDetails" method="post">#}
+                                {#                                     <input type="hidden" name="url" value="hello type">#}
+{#                                <p><a href="/ShowDetails">#}
+{#                                    <img alt="{{ item[0] }}" class="card-img-top img-fluid" src="{{ item[1] }}"#}
+{#                                         id="attrId0">#}
+{#                                </a></p>#}
+                                {##}
+                                {#                                 </form>#}
+
+
+                                <form action="/ShowDetails" method="post">
+                                    <div class="row">
+                                        <!-- Store Search -->
+
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="block d-flex">
+
+                                                <input type="hidden" class="form-control mb-2 mr-sm-2 mb-sm-0" name="Title"  value="{{ item[0] }}">
+                                                <input type="hidden" class="form-control mb-2 mr-sm-2 mb-sm-0" name="Image_src" value="{{ item[1] }}">
+                                                <input type="hidden" class="form-control mb-2 mr-sm-2 mb-sm-0" name="ASIN" value="{{ item[2] }}">
+                                                <!-- Search Button -->
+                                                <button class="btn btn-main"> <img alt="{{ item[0] }}"  class="card-img-top img-fluid" src="{{ item[1] }}"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+
                             </div>
 
                             <div class="card-body">
