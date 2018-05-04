@@ -73,8 +73,8 @@ if (!empty($items))
 }
 
 
-$l1= 'https://www.amazon.com/product-reviews';
-$l2= 'ref=sr_1_1?s=mobile-apps&ie=UTF8&sr=1-1&keywords='.$val;
+$l1= 'https://www.amazon.com/gp/product/';
+$l2= '/ref=sr_1_1?s=mobile-apps&ie=UTF8&sr=1-1&keywords='.$val;
 $l3= 'ASIN=';
 
 $f1 = '/home/musfiq/PycharmProjects/amazon_review_analyzer/templates/search_text/FTitle.txt';
@@ -90,7 +90,8 @@ foreach ( $items->getElementsByTagName("Item") as $item )    {
 	 $ASIN=$item->getElementsByTagName("ASIN")[0]->nodeValue.PHP_EOL;
 	 $t1= $item->getElementsByTagName("ItemAttributes")[0];
 	 $Title= $t1->getElementsByTagName("Title")[0]->nodeValue.PHP_EOL;
-	 $applink= $l1."x".$ASIN."x".$l2; //.$l3.$ASIN;
+	 $ASIN = preg_replace('/\n$/','',$ASIN);
+	 $applink= $l1.$ASIN.$l2."\n"; //.$l3.$ASIN;
 	 $img = $item->getElementsByTagName("MediumImage")[0];  
 	 $image= $img->getElementsByTagName("URL")[0]->nodeValue.PHP_EOL;
 	 
@@ -104,7 +105,7 @@ foreach ( $items->getElementsByTagName("Item") as $item )    {
 	 
 	 $current1 .= $Title;
 	 $current2 .= $image;
-	 $current3 .= $ASIN;
+	 $current3 .= $applink;
 	 $current4 .="selected\n"."selected\n"."selected\n"."selected\n"."selected\n";
 	 
 	 #echo $current;
