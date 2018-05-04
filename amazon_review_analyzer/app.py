@@ -412,6 +412,8 @@ def crashreview(review_string):
 def adsreview(review_string):
     if review_string.find("ads") != -1:
         return 1
+    if review_string.find("add") != -1:
+        return 1
     return 0
 
 
@@ -584,10 +586,16 @@ def app_details(title, imagelink, installlink):
 
     s = "{0:.2f}".format(average_positive_sentiment)
     average_positive_sentiment = float(s)
+    average_positive_sentiment=average_positive_sentiment*100
+    average_positive_sentiment_percentage=int(average_positive_sentiment)
+    s = "{0:.2f}".format(average_negative_sentiment)
+    average_negative_sentiment = float(s)
+    average_negative_sentiment = average_negative_sentiment * 100
+    average_negative_sentiment_percentage = int(average_negative_sentiment)
 
     return render_template(
         'app_details.html',
-        positive_senti=average_positive_sentiment, negative_senti=average_negative_sentiment,
+        positive_senti=average_positive_sentiment_percentage, negative_senti=average_negative_sentiment_percentage,
         graphicsupvote=graphics_upvote, graphicsdownvote=graphics_downvote,
         controlupvote=control_upvote, controldownvote=control_downvote,
         powerconsumeupvote=power_consume_upvote, powerconsumedownvote=power_consume_downvote,
