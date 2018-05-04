@@ -10,7 +10,7 @@ with open(file_path, "w") as f:
 url = "https://www.amazon.com/Best-Sellers-Appstore-Android-Game-Apps/zgbs/mobile-apps/2478844011"
 html = urlopen(url)
 bs = BeautifulSoup(html, "lxml")
-links = bs.find("ol",{"id" : "zg-ordered-list"}).findAll("img", src=re.compile("([A-Za-z0-9_?&=:()])+"))
+links = bs.find("div", {"id": "zg_centerListWrapper"}).findAll("img", src=re.compile("([A-Za-z0-9_?&=:()])+"))
 
 # Write in file
 for link in links:

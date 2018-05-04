@@ -78,7 +78,106 @@
 =            Hero Area            =
 ================================-->
 
+<section class="hero-area bg-1 text-center overly">
+    <!-- Container Start -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Header Contetnt -->
+                <div class="content-block">
+                    <h1>Search The Best App</h1>
+                    <p>We will help you to find the best app</p>
+                    <div class="short-popular-category-list text-center">
+                        <h2>Popular Category</h2>
+                        <ul class="list-inline">
 
+                            <li class="list-inline-item">
+                                <a href=""><i class="fa fa-android"></i> Apps</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href=""><i class="fa fa-gamepad"></i> Games</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- Advance Search -->
+                <div class="advance-search">
+                    <form>
+                        <div class="row">
+                            <!-- Store Search -->
+
+                            <div class="col-lg-12 col-md-12">
+                                <div class="block d-flex">
+                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" name="SearchWord" placeholder="Search for app">
+                                    <!-- Search Button -->
+                                    <button class="btn btn-main">SEARCH</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Container End -->
+</section>
+
+<!--===========================================
+=            Popular deals section            =
+============================================-->
+
+<section class="popular-deals section bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2>Top Rated Amazon Playstore Apps</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for item in list %}
+                <div class="col-sm-10 col-lg-2">
+                    <!-- product card -->
+                    <div class="product-item bg-light">
+                        <div class="card" style="width: 10rem;">
+                            <div class="thumb-content">
+                                <form>
+                                    <button>
+                                        <img alt="{{ item[0] }}" class="card-img-top img-fluid" src={{ item[1] }}>
+                                        <input type="hidden" name="Title"  value="{{ item[0] }}">
+                                        <input type="hidden" name="Image_src" value="{{ item[1] }}">
+                                        <input type="hidden" name="ASIN" value="{{ item[2] }}">
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="card-body">
+                                <div>
+                                    <span style="width: 10rem; font-size: 12px">{{ item[0] }}</span>
+                                </div>
+                                <div class="product-ratings">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item {{ item[3] }}"><i class="fa fa-star"></i></li>
+                                        <li class="list-inline-item {{ item[4] }}"><i class="fa fa-star"></i></li>
+                                        <li class="list-inline-item {{ item[5] }}"><i class="fa fa-star"></i></li>
+                                        <li class="list-inline-item {{ item[6] }}"><i class="fa fa-star"></i></li>
+                                        <li class="list-inline-item {{ item[7] }}"><i class="fa fa-star"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</section>
 
 <!--============================
 =            Footer            =
@@ -127,14 +226,6 @@
 <script src="static/plugins/smoothscroll/SmoothScroll.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
 <script src="static/js/scripts.js"></script>
-
-
-<script type="text/javascript">  //give the links of the apps here
-var Imgsrc = "https://lh3.googleusercontent.com/k-CHSQOYZtEt0m45lBEjOqCNqQOKcTghdbwWYr6Dx6MWdb9ECLaGVUZLOOtPVyyJQvSM=s180"
-var Appname = "Brain It On! - Physics Puzzles"
-document.getElementById("Imgsrc1").src = Imgsrc;
-document.getElementById("appname1").innerText = Appname
-</script>
 
 </body>
 
