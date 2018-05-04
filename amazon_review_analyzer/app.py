@@ -1,13 +1,14 @@
 from flask import Flask, render_template, request, json, flash, redirect, url_for, session, logging
 from flask_mysqldb import MySQL
 from flask import session
-import os,subprocess,time
+import os, subprocess, time
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
 import MySQLdb
 import os
-import app_name_finder,image_link_finder,page_link_finder,rating_finder,merge_links
+
+# import app_name_finder,image_link_finder,page_link_finder,rating_finder,merge_links
 
 
 app = Flask(__name__)
@@ -21,7 +22,6 @@ app = Flask(__name__)
 #
 # #init MYSQL
 # mysql.init_app(app)
-
 
 
 ######################################### home #########################################
@@ -56,7 +56,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def home2():
-
     i = 0
     j = 0
     file_path = 'templates/text_files/merged_file.txt'
@@ -78,16 +77,14 @@ def home2():
     return render_template("home2.html", list=list)
 
 
-
-@app.route('/SearchPage' , methods=['POST'])  # shows search result @app.route('/' , methods=['POST'])
+@app.route('/SearchPage', methods=['POST'])  # shows search result @app.route('/' , methods=['POST'])
 def SearchPage():
-
-    keyword= request.form['SearchWord']
+    keyword = request.form['SearchWord']
     # keyword="Subway"
-    arg = "arg1="+keyword
+    arg = "arg1=" + keyword
     subprocess.call(["php", "/home/musfiq/PycharmProjects/amazon_review_analyzer/ItemSearch2.php", arg])
 
-    #time.sleep(3)
+    # time.sleep(3)
     merge()
 
     i = 0
@@ -103,7 +100,7 @@ def SearchPage():
             list[j].append(line)
             i += 1
 
-            if i == 8:
+            if i == 9:
                 if list.__len__() == 18:
                     break
                 i = 0
@@ -116,7 +113,6 @@ def SearchPage():
 
 
 def merge():
-
     name1 = 'templates/search_text/FTitle.txt'
     name2 = 'templates/search_text/FImage.txt'
     name3 = 'templates/search_text/FASIN.txt'
@@ -168,6 +164,40 @@ def merge():
             for j in list4[i]:
                 f5.write(j)
 
+            f5.write("attrId" + str(i) + "\n")
+
+
+@app.route('/ShowDetails', methods=['POST'])
+def ShowPage():
+    Title = request.form['Title']
+    Image = request.form['Image_src']
+    ASIN = request.form['ASIN']
+
+    #print(ASIN)
+    #ASIN= ASIN[:-2]
+    #ASIN.rstrip()
+    #ASIN.rstrip()
+    url=ASIN
+    #url = "https://www.amazon.com/gp/product/" + ASIN + "/ref=sr_1_1?s=mobile-apps&ie=UTF8&sr=1-1&keywords="+ASIN
+    #url = "https://www.amazon.com/gp/product/" + ASIN + "xxxxx" + ASIN+"yyyy"
+    url2 = "https://www.amazon.com/gp/product/B009UX2YAC/ref=sr_1_1?s=mobile-apps&ie=UTF8&sr=1-1&keywords=B009UX2YAC"
+    # print("------->"+url)
+    # print(".......>"+url2)
+
+    url = "start_url=" + url
+
+    #return url
+
+    open('/home/musfiq/PycharmProjects/amazon_review_analyzer/amazonreview2/reviewspecial.json', 'w').close()
+    os.chdir(os.path.abspath('/home/musfiq/PycharmProjects/amazon_review_analyzer/amazonreview2'))
+    print(subprocess.check_output(['scrapy', 'crawl', 'reviewspider', '-a', url, '-o', 'reviewspecial.json']))
+
+
+    with open("/home/musfiq/PycharmProjects/amazon_review_analyzer/amazonreview2/reviewspecial.json") as items_file:
+        return items_file.read()
+
+    # return Title+Image+ASIN
+
 
 ######################################### registration #########################################
 
@@ -183,7 +213,6 @@ def registration_form_error():
 
 @app.route('/registration_form_response', methods=['POST'])
 def registration_form_response():
-
     u_name = request.form['InputName']
     u_email = request.form['InputEmail']
     u_password = request.form['InputPassword']
@@ -224,7 +253,6 @@ def login_form_error():
 
 @app.route('/login_form_response', methods=['POST'])
 def login_form_response():
-
     u_email = request.form['InputEmail']
     u_password = request.form['InputPassword']
 
@@ -255,7 +283,7 @@ def login_form_response():
             file_path = 'templates/text_files/merged_file.txt'
             list = []
             list.append([])
-            with open(file_path,'r') as f:
+            with open(file_path, 'r') as f:
                 for line in f:
                     if i < 2:
                         list[j].append(line)
@@ -283,9 +311,9 @@ def profile():
     list.append(session['email'])
     return render_template("profile.html", list=list)
 
+
 @app.route('/edit_profile', methods=['POST'])
 def edit_profile():
-
     u_name = request.form['InputName']
     u_email = session['email']
     u_cpassword = request.form['InputCPassword']
