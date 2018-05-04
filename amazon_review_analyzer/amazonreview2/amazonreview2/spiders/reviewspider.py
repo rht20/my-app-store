@@ -38,7 +38,3 @@ class ReviewspiderSpider(scrapy.Spider):
             'review_body':review_body,
             'desc': desc
         }
-
-
-
-

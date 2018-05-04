@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Search Result </title>
+    <title>My App Store</title>
 
     <!-- PLUGINS CSS STYLE -->
     <link href="static/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
@@ -125,58 +125,103 @@
     <!-- Container End -->
 </section>
 
-<!--===========================================
-=            Popular deals section            =
-============================================-->
-
-<section class="popular-deals section bg-gray">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-title">
-                    <h2>Top Rated Amazon Playstore Apps</h2>
-                </div>
+<!--===================================
+=            main body                =
+====================================-->
+<section>
+<h2 style="visibility: hidden">this is use for a gap</h2>
+        <h2 style="visibility: hidden">this is use for a gap</h2>
+      <div class="row" style="padding-left: 10%">
+        <div class="col-md-4" >
+          <img class="img-fluid" src="{{ imagelink }}" alt="User Image">
+            <h3>{{ title }}</h3>
+            <h1 class="my-4">
+          </h1>
+            <div class="row">
+                <div class="p-3 mb-2 bg-primary text-white">positive review sentiment</div>
+                <div class="p-3 mb-2 bg-dark text-white">{{ positive_senti }}</div>
             </div>
+
+            <div class="row">
+                <div class="p-3 mb-2 bg-primary text-white">negative review sentiment</div>
+                <div class="p-3 mb-2 bg-dark text-white">{{ negative_senti }}</div>
+            </div>
+            <div >
+                <h3 class="my-3">Features</h3>
+                {% for feature in featureslist %}
+                <h3>{{ feature }}</h3>
+                {% end for %}
+            </div>
+            <div>
+              <a class="btn btn-primary" href="{{ installlink }}" role="button">install</a>
+          </div>
+
+      </div>
+          <div>
+              <h1 style="visibility: hidden">----------------</h1>
+          </div>
+          <div class="col-md-4" >
+              <div>
+                  <h1> Categories</h1>
+              </div>
+          <div>
+                <a class="btn btn-primary" style="size: 25px" href="/graphics" role="button">graphics</a>
+            </div>
+            <div class="row">
+                <div class="p-3 mb-2 bg-success text-white">upvote</div>
+                <div class="p-3 mb-2 bg-dark text-white">{{ graphicsupvote }}</div>
+                <div class="p-3 mb-2 bg-danger text-white">downvote</div>
+                <div class="p-3 mb-2 bg-dark text-white">{{ graphicsdownvote }}</div>
+            </div>
+            <div>
+                <a class="btn btn-primary" style="size: 25px" href="/crash" role="button">crash</a>
+            </div>
+            <div class="row">
+                <div class="p-3 mb-2 bg-success text-white">upvote</div>
+                <div class="p-3 mb-2 bg-dark text-white">{{ crashupvote }}</div>
+                <div class="p-3 mb-2 bg-danger text-white">downvote</div>
+                <div class="p-3 mb-2 bg-dark text-white">{{ crashdownvote }}</div>
+            </div>
+            <div>
+               <a class="btn btn-primary" href="/userfriendly" role="button">userfriendly</a>
+            </div>
+            <div class="row">
+                <div class="p-3 mb-2 bg-success text-white">upvote</div>
+                <div class="p-3 mb-2 bg-dark text-white">{{ userfriendlyupvote }}</div>
+                <div class="p-3 mb-2 bg-danger text-white">downvote</div>
+                <div class="p-3 mb-2 bg-dark text-white">{{ userfriendlydownvote }}</div>
+            </div>
+            <div>
+                <a class="btn btn-primary" href="/advertisement" role="button">advertisement</a>
+            </div>
+            <div class="row">
+                <div class="p-3 mb-2 bg-success text-white">upvote</div>
+                <div class="p-3 mb-2 bg-dark text-white">{{ advertiseupvote }}</div>
+                <div class="p-3 mb-2 bg-danger text-white">downvote</div>
+                <div class="p-3 mb-2 bg-dark text-white">{{ advertisedownvote }}</div>
+            </div>
+
+            <div>
+                <a class="btn btn-primary" href="/powerconsume" role="button">powerconsume</a>
+            </div>
+            <div class="row">
+                <div class="p-3 mb-2 bg-success text-white">upvote</div>
+                <div class="p-3 mb-2 bg-dark text-white">{{ powerconsumeupvote }}</div>
+                <div class="p-3 mb-2 bg-danger text-white">downvote</div>
+                <div class="p-3 mb-2 bg-dark text-white">{{ powerconsumedownvote }}</div>
+            </div>
+            <div>
+                <a class="btn btn-primary" href="/control" role="button">control</a>
+            </div>
+            <div class="row">
+                <div class="p-3 mb-2 bg-success text-white">upvote</div>
+                <div class="p-3 mb-2 bg-dark text-white">{{ controlupvote }}</div>
+                <div class="p-3 mb-2 bg-danger text-white">downvote</div>
+                <div class="p-3 mb-2 bg-dark text-white">{{ controldownvote }}</div>
+            </div>
+
+          </div>
         </div>
-
-        <div class="row">
-            {% for item in list %}
-                <div class="col-sm-10 col-lg-2">
-                    <!-- product card -->
-                    <div class="product-item bg-light">
-                        <div class="card" style="width: 10rem;">
-                            <div class="thumb-content">
-                                <form>
-                                    <button>
-                                        <img alt="{{ item[0] }}" class="card-img-top img-fluid" src={{ item[1] }}>
-                                        <input type="hidden" name="Title"  value="{{ item[0] }}">
-                                        <input type="hidden" name="Image_src" value="{{ item[1] }}">
-                                        <input type="hidden" name="ASIN" value="{{ item[2] }}">
-                                    </button>
-                                </form>
-                            </div>
-
-                            <div class="card-body">
-                                <div>
-                                    <span style="width: 10rem; font-size: 12px">{{ item[0] }}</span>
-                                </div>
-                                <div class="product-ratings">
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                        <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                        <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                        <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-
 </section>
 
 <!--============================

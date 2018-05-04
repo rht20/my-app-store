@@ -26,7 +26,7 @@ mysql.init_app(app)
 ######################################### home #########################################
 
 
-@app.route('/')
+@app.route('/home1')
 def home1():
 #     app_name_finder
 #     image_link_finder
@@ -56,7 +56,7 @@ def home1():
      return render_template("home1.html", list=list)
 
 
-@app.route('/home2')
+@app.route('/')
 def home2():
     i = 0
     j = 0
@@ -97,7 +97,6 @@ def SearchPage():
     i = 0
     j = 0
 
-    print("opening merging file")
     file_path = '/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/templates/search_text/merged_attribute.txt'
     list = []
     list.append([])
@@ -193,18 +192,24 @@ def ShowPage():
 
     url = "start_url=" + url
 
-    #return url
-
     open('/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/amazonreview2/reviewspecial.json', 'w').close()
     os.chdir(os.path.abspath('/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/amazonreview2'))
     print(subprocess.check_output(['scrapy', 'crawl', 'reviewspider', '-a', url, '-o', 'reviewspecial.json']))
 
-
     #with open("/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/amazonreview2/reviewspecial.json") as items_file:
-    #    return items_file.read()
+     #   return items_file.read()
 
-    # return Title+Image+ASIN
 
+    # open('/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/amazonreview2/reviewspecial.json', 'w').close()
+    # os.chdir(os.path.abspath('/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/amazonreview2'))
+    # print(subprocess.check_output(['scrapy', 'crawl', 'reviewspider', '-a', url, '-o', 'reviewspecial.json']))
+    #
+    #
+    # #with open("/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/amazonreview2/reviewspecial.json") as items_file:
+    # #    return items_file.read()
+    #
+    # # return Title+Image+ASIN
+    #
     return app_details(Title, Image, ASIN)
 
 

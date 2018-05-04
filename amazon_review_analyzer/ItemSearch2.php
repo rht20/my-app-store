@@ -77,10 +77,10 @@ $l1= 'https://www.amazon.com/gp/product/';
 $l2= '/ref=sr_1_1?s=mobile-apps&ie=UTF8&sr=1-1&keywords='.$val;
 $l3= 'ASIN=';
 
-$f1 = '/home/musfiq/PycharmProjects/amazon_review_analyzer/templates/search_text/FTitle.txt';
-$f2 = '/home/musfiq/PycharmProjects/amazon_review_analyzer/templates/search_text/FImage.txt';
-$f3 = '/home/musfiq/PycharmProjects/amazon_review_analyzer/templates/search_text/FASIN.txt';
-$f4 = '/home/musfiq/PycharmProjects/amazon_review_analyzer/templates/search_text/FRating.txt';
+$f1 = '/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/templates/search_text/FTitle.txt';
+$f2 = '/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/templates/search_text/FImage.txt';
+$f3 = '/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/templates/search_text/FASIN.txt';
+$f4 = '/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/templates/search_text/FRating.txt';
 $current1 ="";
 $current2 ="";
 $current3 ="";
