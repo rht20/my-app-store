@@ -9,6 +9,7 @@ import MySQLdb
 from aylien_textapi_python.aylienapiclient import textapi
 from flask_bootstrap import Bootstrap
 import json
+import smtplib
 
 
 #import app_name_finder,image_link_finder,page_link_finder,rating_finder,merge_links
@@ -26,7 +27,7 @@ mysql.init_app(app)
 ######################################### home #########################################
 
 
-@app.route('/home1')
+@app.route('/')
 def home1():
 #     app_name_finder
 #     image_link_finder
@@ -36,7 +37,7 @@ def home1():
 
      i = 0
      j = 0
-     file_path = 'templates/text_files/merged_file.txt'
+     file_path = '/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/templates/text_files/merged_file.txt'
      list = []
      list.append([])
 
@@ -56,11 +57,11 @@ def home1():
      return render_template("home1.html", list=list)
 
 
-@app.route('/')
+@app.route('/home2')
 def home2():
     i = 0
     j = 0
-    file_path = 'templates/text_files/merged_file.txt'
+    file_path = '/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/templates/text_files/merged_file.txt'
     list = []
     list.append([])
 
@@ -192,12 +193,14 @@ def ShowPage():
 
     url = "start_url=" + url
 
+    print("yyyyyyyyyyy")
+
     open('/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/amazonreview2/reviewspecial.json', 'w').close()
     os.chdir(os.path.abspath('/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/amazonreview2'))
     print(subprocess.check_output(['scrapy', 'crawl', 'reviewspider', '-a', url, '-o', 'reviewspecial.json']))
 
-    #with open("/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/amazonreview2/reviewspecial.json") as items_file:
-     #   return items_file.read()
+    # with open("/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/amazonreview2/reviewspecial.json") as items_file:
+    #    return items_file.read()
 
 
     # open('/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/amazonreview2/reviewspecial.json', 'w').close()
@@ -208,9 +211,11 @@ def ShowPage():
     # #with open("/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/amazonreview2/reviewspecial.json") as items_file:
     # #    return items_file.read()
     #
-    # # return Title+Image+ASIN
+   # return Title+Image+ASIN
     #
+
     return app_details(Title, Image, ASIN)
+
 
 
 ######################################### registration #########################################
@@ -247,10 +252,30 @@ def registration_form_response():
 
             # Close connection
             cur.close()
+
+            send_mail(u_email)
+
             return render_template("home2.html")
 
         else:
             return render_template("registration_error.html")
+
+
+def send_mail(u_email):
+    mail_to = u_email
+    mail_from = "amazonreviewextractor@gmail.com"
+    password = "amazon-review"
+    subject = "Welcome"
+    text = "Congratulations, successfully new account created!"
+
+    body = '\r\n'.join((['To: %s' % mail_to, 'From: %s' % mail_from, 'Subject: %s' %subject, '', text]))
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.ehlo()
+    server.starttls()
+    server.login(mail_from, password)
+    server.sendmail(mail_from, mail_to, body)
+    server.quit()
 
 
 ######################################### login #########################################
@@ -314,6 +339,11 @@ def login_form_response():
 
         else:
             return render_template("login_error.html")
+
+
+@app.route('/forget_password')
+def forget_password():
+    return render_template("login_form.html")
 
 
 ######################################### profile #########################################
@@ -416,7 +446,6 @@ def adsreview(review_string):
         return 1
     return 0
 
-
 def advertisedreview(review_string):
     if review_string.find("advertise") != -1:
         return 1
@@ -466,7 +495,6 @@ def crashpath():
 
 def app_details(title, imagelink, installlink):
 
-    #return str(title+" "+imagelink+" "+installlink)
     del graphics_arraylist[:]
     del control_arraylist[:]
     del crash_arraylist[:]
@@ -484,6 +512,13 @@ def app_details(title, imagelink, installlink):
     for i in data[0]["desc"]:
         s = i[5:-5]
         features.append(s)
+
+    file = open("/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/amazonreview2/tag.txt", "r")
+    for line in file:
+        file_string += line
+
+    main_str = file_string
+
 
     # client = textapi.Client("bd0e6efe", "e2cae699e4c44c35ccd6bd3b587b03c8")
     # client = textapi.Client("402c4f5d", "c4ce28551be5a50a9299d5badb825287")

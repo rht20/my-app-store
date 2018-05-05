@@ -66,6 +66,12 @@
     <link rel="stylesheet" a href="css3\font-awesome.min.css">
 <!--===============================================================================================-->
 
+    <script type="text/javascript">
+        function msg()
+        {
+            alert("Temporary password has been sent")
+        }
+    </script>
 </head>
 
 <body class="body-wrapper">
@@ -132,15 +138,21 @@
 
                 </form>
 
-                <form action="/registration_form">
+                <form action="/forget_password">
+                        <div class="container-login100-form-btn">
+						    <a href="/forget_password" class="dis-block txt3 hov1 p-t-10 p-l-90">
+							    Forget Password
+						    </a>
+					    </div>
+                </form>
 
+                <form action="/registration_form">
                         <div class="container-login100-form-btn">
 						    <a href="/registration_form" class="dis-block txt3 hov1 p-t-10 p-l-215">
 							    Sign Up
 							    <i class="fa fa-long-arrow-right m-l-5"></i>
 						    </a>
 					    </div>
-
                 </form>
 
             </div>

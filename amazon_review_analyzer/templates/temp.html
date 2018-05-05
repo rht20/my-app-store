@@ -27,13 +27,36 @@
     <!-- FAVICON -->
     <link href="static/img/favicon.png" rel="shortcut icon">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+<!--===============================================================================================-->
 
+<!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="static/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="static/css/main.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" a href="css3\style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" a href="css3\font-awesome.min.css">
 <!--===============================================================================================-->
 
 </head>
@@ -41,13 +64,12 @@
 <body class="body-wrapper">
 
 <section>
-    <div class="container">
+    <div class="container" style="padding-top: 0.8%; padding-bottom: 0.8%">
         <div class="row">
             <div class="col-md-12">
                 <nav class="navbar navbar-expand-lg  navigation">
                     <a class="navbar-brand" href="/home2" style="font-size: 20px">
                         My App Store
-                        {#<img src="static/images/logo.png" alt="">#}
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -85,40 +107,8 @@
             <div class="col-md-12">
                 <!-- Header Contetnt -->
                 <div class="content-block">
-                    <h1>Search The Best App</h1>
-                    <p>We will help you to find the best app</p>
-                    <div class="short-popular-category-list text-center">
-                        <h2>Popular Category</h2>
-                        <ul class="list-inline">
-
-                            <li class="list-inline-item">
-                                <a href=""><i class="fa fa-android"></i> Apps</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href=""><i class="fa fa-gamepad"></i> Games</a>
-                            </li>
-                        </ul>
-                    </div>
-
+                    <h1>App Details</h1>
                 </div>
-                <!-- Advance Search -->
-                <div class="advance-search">
-                    <form action="/SearchPage" method="post">
-                        <div class="row">
-                            <!-- Store Search -->
-
-                            <div class="col-lg-12 col-md-12">
-                                <div class="block d-flex">
-                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" name="SearchWord" placeholder="Search for app">
-                                    <!-- Search Button -->
-                                    <button class="btn btn-main">SEARCH</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
-                </div>
-
             </div>
         </div>
     </div>
@@ -128,100 +118,103 @@
 <!--===================================
 =            main body                =
 ====================================-->
-<section>
-<h2 style="visibility: hidden">this is use for a gap</h2>
-        <h2 style="visibility: hidden">this is use for a gap</h2>
-      <div class="row" style="padding-left: 10%">
-        <div class="col-md-4" >
-          <img class="img-fluid" src="{{ imagelink }}" alt="User Image">
-            <h3>{{ title }}</h3>
-            <h1 class="my-4">
-          </h1>
+
+<section style="padding-top: 5%">
+      <div class="row" style="padding-left: 15%">
+        <div class="col-5">
+            <img class="col-4 img-fluid" src="{{ imagelink }}" alt="{{ title }}" style="padding-bottom: 5%">
+            <h4 align="center" style="padding-bottom: 20%">{{ title }}</h4>
+
             <div class="row">
-                <div class="p-3 mb-2 bg-primary text-white">positive review sentiment</div>
-                <div class="p-3 mb-2 bg-dark text-white">{{ positive_senti }}</div>
+                <div class="p-3 mb-2 bg-primary text-white" style="width: 240px; font-size: 15px">Positive Review Sentiment</div>
+                <div class="p-2 mb-2 bg-dark text-white" style="width: 15%" align="center">{{ positive_senti }}</div>
             </div>
 
             <div class="row">
-                <div class="p-3 mb-2 bg-primary text-white">negative review sentiment</div>
-                <div class="p-3 mb-2 bg-dark text-white">{{ negative_senti }}</div>
+                <div class="p-3 mb-2 bg-primary text-white" style="width: 240px; font-size: 15px">Negative Review Sentiment</div>
+                <div class="p-2 mb-2 bg-dark text-white" style="width: 15%" align="center">{{ negative_senti }}</div>
             </div>
-            <div >
+
+            <div style="padding-bottom: 20%; width: 100%">
                 <h3 class="my-3">Features</h3>
-                {% for feature in featureslist %}
-                <h3>{{ feature }}</h3>
-                {% end for %}
+                    {% for feature in featureslist %}
+                        <h5>{{ feature }}</h5>
+                    {% endfor %}
             </div>
-            <div>
+            <br>
+            <div style="padding-top: 10%">
               <a class="btn btn-primary" href="{{ installlink }}" role="button">install</a>
-          </div>
+            </div>
 
       </div>
+      <div class="col-5">
           <div>
-              <h1 style="visibility: hidden">----------------</h1>
+              <h1 style="visibility: hidden">---------------</h1>
           </div>
-          <div class="col-md-4" >
+          <div class="col-md-4">
               <div>
-                  <h1> Categories</h1>
+                  <h1> Categories </h1>
               </div>
+              <br>
           <div>
-                <a class="btn btn-primary" style="size: 25px" href="/graphics" role="button">graphics</a>
-            </div>
-            <div class="row">
-                <div class="p-3 mb-2 bg-success text-white">upvote</div>
-                <div class="p-3 mb-2 bg-dark text-white">{{ graphicsupvote }}</div>
-                <div class="p-3 mb-2 bg-danger text-white">downvote</div>
-                <div class="p-3 mb-2 bg-dark text-white">{{ graphicsdownvote }}</div>
-            </div>
-            <div>
-                <a class="btn btn-primary" style="size: 25px" href="/crash" role="button">crash</a>
-            </div>
-            <div class="row">
-                <div class="p-3 mb-2 bg-success text-white">upvote</div>
-                <div class="p-3 mb-2 bg-dark text-white">{{ crashupvote }}</div>
-                <div class="p-3 mb-2 bg-danger text-white">downvote</div>
-                <div class="p-3 mb-2 bg-dark text-white">{{ crashdownvote }}</div>
+              <a class="btn btn-primary" style="width: 102%; line-height: 200%" href="/graphics" role="button">Graphics</a>
+          </div>
+            <div class="row" style="padding-left: 4%">
+                <div class="p-3 mb-2 bg-success text-white">Upvote</div>
+                <div class="p-3 mb-2 bg-dark text-white" align="center" style="width: 22%">{{ graphicsupvote }}</div>
+                <div class="p-3 mb-2 bg-danger text-white">Downvote</div>
+                <div class="p-3 mb-2 bg-dark text-white" align="center" style="width: 22%">{{ graphicsdownvote }}</div>
             </div>
             <div>
-               <a class="btn btn-primary" href="/userfriendly" role="button">userfriendly</a>
+                <a class="btn btn-primary" style="width: 102%; line-height: 200%" href="/crash" role="button">Crash</a>
             </div>
-            <div class="row">
-                <div class="p-3 mb-2 bg-success text-white">upvote</div>
-                <div class="p-3 mb-2 bg-dark text-white">{{ userfriendlyupvote }}</div>
-                <div class="p-3 mb-2 bg-danger text-white">downvote</div>
-                <div class="p-3 mb-2 bg-dark text-white">{{ userfriendlydownvote }}</div>
+            <div class="row" style="padding-left: 4%">
+                <div class="p-3 mb-2 bg-success text-white">Upvote</div>
+                <div class="p-3 mb-2 bg-dark text-white" align="center" style="width: 22%">{{ crashupvote }}</div>
+                <div class="p-3 mb-2 bg-danger text-white">Downvote</div>
+                <div class="p-3 mb-2 bg-dark text-white" align="center" style="width: 22%">{{ crashdownvote }}</div>
             </div>
             <div>
-                <a class="btn btn-primary" href="/advertisement" role="button">advertisement</a>
+               <a class="btn btn-primary" style="width: 102%; line-height: 200%" href="/userfriendly" role="button">Userfriendly</a>
             </div>
-            <div class="row">
-                <div class="p-3 mb-2 bg-success text-white">upvote</div>
-                <div class="p-3 mb-2 bg-dark text-white">{{ advertiseupvote }}</div>
-                <div class="p-3 mb-2 bg-danger text-white">downvote</div>
-                <div class="p-3 mb-2 bg-dark text-white">{{ advertisedownvote }}</div>
+            <div class="row" style="padding-left: 4%">
+                <div class="p-3 mb-2 bg-success text-white">Upvote</div>
+                <div class="p-3 mb-2 bg-dark text-white" align="center" style="width: 22%">{{ userfriendlyupvote }}</div>
+                <div class="p-3 mb-2 bg-danger text-white">Downvote</div>
+                <div class="p-3 mb-2 bg-dark text-white" align="center" style="width: 22%">{{ userfriendlydownvote }}</div>
+            </div>
+            <div>
+                <a class="btn btn-primary" style="width: 102%; line-height: 200%" href="/advertisement" role="button">Advertisement</a>
+            </div>
+            <div class="row" style="padding-left: 4%">
+                <div class="p-3 mb-2 bg-success text-white">Upvote</div>
+                <div class="p-3 mb-2 bg-dark text-white" align="center" style="width: 22%">{{ advertiseupvote }}</div>
+                <div class="p-3 mb-2 bg-danger text-white">Downvote</div>
+                <div class="p-3 mb-2 bg-dark text-white" align="center" style="width: 22%">{{ advertisedownvote }}</div>
             </div>
 
             <div>
-                <a class="btn btn-primary" href="/powerconsume" role="button">powerconsume</a>
+                <a class="btn btn-primary" style="width: 102%; line-height: 200%" href="/powerconsume" role="button">Powerconsume</a>
             </div>
-            <div class="row">
-                <div class="p-3 mb-2 bg-success text-white">upvote</div>
-                <div class="p-3 mb-2 bg-dark text-white">{{ powerconsumeupvote }}</div>
-                <div class="p-3 mb-2 bg-danger text-white">downvote</div>
-                <div class="p-3 mb-2 bg-dark text-white">{{ powerconsumedownvote }}</div>
+            <div class="row" style="padding-left: 4%">
+                <div class="p-3 mb-2 bg-success text-white">Upvote</div>
+                <div class="p-3 mb-2 bg-dark text-white" align="center" style="width: 22%">{{ powerconsumeupvote }}</div>
+                <div class="p-3 mb-2 bg-danger text-white">Downvote</div>
+                <div class="p-3 mb-2 bg-dark text-white" align="center" style="width: 22%">{{ powerconsumedownvote }}</div>
             </div>
             <div>
-                <a class="btn btn-primary" href="/control" role="button">control</a>
+                <a class="btn btn-primary" style="width: 102%; line-height: 200%" href="/control" role="button">Control</a>
             </div>
-            <div class="row">
-                <div class="p-3 mb-2 bg-success text-white">upvote</div>
-                <div class="p-3 mb-2 bg-dark text-white">{{ controlupvote }}</div>
-                <div class="p-3 mb-2 bg-danger text-white">downvote</div>
-                <div class="p-3 mb-2 bg-dark text-white">{{ controldownvote }}</div>
+            <div class="row" style="padding-left: 4%">
+                <div class="p-3 mb-2 bg-success text-white">Upvote</div>
+                <div class="p-3 mb-2 bg-dark text-white" align="center" style="width: 22%">{{ controlupvote }}</div>
+                <div class="p-3 mb-2 bg-danger text-white">Downvote</div>
+                <div class="p-3 mb-2 bg-dark text-white" align="center" style="width: 22%">{{ controldownvote }}</div>
             </div>
 
           </div>
         </div>
+      </div>
 </section>
 
 <!--============================

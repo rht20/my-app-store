@@ -2,7 +2,7 @@ from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
 import re
 
-file_path = 'templates/text_files/page_links.txt'
+file_path = '/home/user/Documents/NO/Amazon-review-extractor/amazon_review_analyzer/templates/text_files/page_links.txt'
 with open(file_path, "w") as f:
     f.write("")
 

@@ -31,6 +31,7 @@ class ReviewspiderSpider(scrapy.Spider):
         print(self.start_urls)
         review_body = response.xpath('//span[contains(@data-hook, "review-body")]/text()').extract()
         desc = response.xpath('//div[contains(@id, "feature-bullets-btf")]//li').extract()
+        print("xxxxxxxxxxxxxxx")
         yield {
             # 'title'  :title,
             # 'rating' :rating,
